@@ -22,13 +22,57 @@ public class OrdenacaoDePalavras {
 
         // Ordenar as palavras em ordem crescente de tamanho
         // Utilizando Collections.sort
-        Collections.sort(palavras, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        List<String> palavrasOrdenadasCollections = lerArquivo(arquivoEntrada);
+        long tempoInicioCollectionsSort = System.currentTimeMillis();
+        Collections.sort(palavrasOrdenadasCollections, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
+        long tempoFimCollectionsSort= System.currentTimeMillis();
+        long tempoExecucaoCollections = tempoFimCollectionsSort - tempoInicioCollectionsSort;
 
         //Utilizando BuubleSort
-        bubbleSort(palavras);
+        List<String> palavrasOrdenadasBubbleSort = new ArrayList<>(palavras);
+        long tempoInicioBubbleSort = System.currentTimeMillis();
+        bubbleSort(palavrasOrdenadasBubbleSort);
+        long tempoFimBubbleSort= System.currentTimeMillis();
+        long tempoExecucaoBubbleSort = tempoFimBubbleSort - tempoInicioBubbleSort;
 
-        // Escrever as palavras ordenadas no arquivo de saída
-        escreverArquivo(arquivoSaida, palavras);
+        // Ordenar as palavras em ordem crescente de tamanho com Insertion Sort
+        List<String> palavrasOrdenadasInsertionSort = new ArrayList<>(palavras);
+        long tempoInicioInsertionSort = System.currentTimeMillis();
+        insertionSort(palavrasOrdenadasInsertionSort);
+        long tempoFimInsertionSort = System.currentTimeMillis();
+        long tempoExecucaoInsertionSort = tempoFimInsertionSort - tempoInicioInsertionSort;
+
+        // Ordenar as palavras em ordem crescente de tamanho com Merge Sort
+        List<String> palavrasOrdenadasMergeSort = new ArrayList<>(palavras);
+        long tempoInicioMergeSort = System.currentTimeMillis();
+        mergeSort(palavrasOrdenadasMergeSort, 0, palavras.size() - 1);
+        long tempoFimMergeSort = System.currentTimeMillis();
+        long tempoExecucaoMergeSort = tempoFimMergeSort - tempoInicioMergeSort;
+
+        // Ordenar as palavras em ordem crescente de tamanho com Quick Sort
+        List<String> palavrasOrdenadasQuickSort = new ArrayList<>(palavras);
+        long tempoInicioQuickSort = System.currentTimeMillis();
+        quickSort(palavrasOrdenadasQuickSort, 0, palavras.size() - 1);
+        long tempoFimQuickSort = System.currentTimeMillis();
+        long tempoExecucaoQuickSort = tempoFimQuickSort - tempoInicioQuickSort;
+
+        // Escrever as palavras ordenadas com cada algoritmo no arquivo de saída
+
+        /**
+         * IDENTIFICAR A MELHOR MANEIRA DE IMPRIMIR NO ARQUIVO DE SAÍDA POIS ASSIM
+         * TODOS VÃO PARA O MESMO ARQUIVO JUNTO DO TEMPO DE EXECUÇÃO
+         * SEPARAR DE ACORDO COM O MÉTODO SELECIONADO?
+         *
+         * Dá para escrever elas ordenada com um só método e depois vir colocando o tempo de todos
+         */
+        escreverArquivo(arquivoSaida, "Bubble Sorte (" + tempoExecucaoBubbleSort + "ms):\n", palavrasOrdenadasBubbleSort);
+        escreverArquivo(arquivoSaida, "Insertion Sort (" + tempoExecucaoInsertionSort + " ms):\n", palavrasOrdenadasInsertionSort);
+        escreverArquivo(arquivoSaida, "Merge Sort (" + tempoExecucaoMergeSort + " ms):\n", palavrasOrdenadasMergeSort);
+        escreverArquivo(arquivoSaida, "Quick Sort (" + tempoExecucaoQuickSort + " ms):\n", palavrasOrdenadasQuickSort);
+        escreverArquivo(arquivoSaida, "Collections.sort (" + tempoExecucaoCollections + " ms):\n", palavrasOrdenadasCollections);
+    }
+
+
     }
 
     /**
@@ -59,6 +103,7 @@ public class OrdenacaoDePalavras {
         }
     }
 
+    //BUBBLE SORT
     private static void bubbleSort(List<String> palavras) {
         int n = palavras.size();
         for (int i = 0; i < n - 1; i++) {
@@ -73,6 +118,21 @@ public class OrdenacaoDePalavras {
             }
         }
     }
+
+    //INSERCTION SORT
+    private static void insertionSort(List<String> palavras) {
+        int n = palavras.size();
+        for (int i = 1; i < n; ++i) {
+            String chave = palavras.get(i);
+            int j = i - 1;
+            while (j >= 0 && palavras.get(j).length() > chave.length()) {
+                palavras.set(j + 1, palavras.get(j));
+                j = j - 1;
+            }
+            palavras.set(j + 1, chave);
+        }
+    }
+
 
 }
 
