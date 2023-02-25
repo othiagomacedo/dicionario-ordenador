@@ -1,4 +1,4 @@
-package br.com.phcsoftware;
+package br.com.phcsoftware.model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -45,14 +45,14 @@ public class OrdenacaoDePalavras {
         // Ordenar as palavras em ordem crescente de tamanho com Merge Sort
         List<String> palavrasOrdenadasMergeSort = new ArrayList<>(palavras);
         long tempoInicioMergeSort = System.currentTimeMillis();
-        mergeSort(palavrasOrdenadasMergeSort, 0, palavras.size() - 1);
+        //mergeSort(palavrasOrdenadasMergeSort, 0, palavras.size() - 1);
         long tempoFimMergeSort = System.currentTimeMillis();
         long tempoExecucaoMergeSort = tempoFimMergeSort - tempoInicioMergeSort;
 
         // Ordenar as palavras em ordem crescente de tamanho com Quick Sort
         List<String> palavrasOrdenadasQuickSort = new ArrayList<>(palavras);
         long tempoInicioQuickSort = System.currentTimeMillis();
-        quickSort(palavrasOrdenadasQuickSort, 0, palavras.size() - 1);
+        //quickSort(palavrasOrdenadasQuickSort, 0, palavras.size() - 1);
         long tempoFimQuickSort = System.currentTimeMillis();
         long tempoExecucaoQuickSort = tempoFimQuickSort - tempoInicioQuickSort;
 
@@ -64,16 +64,17 @@ public class OrdenacaoDePalavras {
          * SEPARAR DE ACORDO COM O MÉTODO SELECIONADO?
          *
          * Dá para escrever elas ordenada com um só método e depois vir colocando o tempo de todos
-         */
+
         escreverArquivo(arquivoSaida, "Bubble Sorte (" + tempoExecucaoBubbleSort + "ms):\n", palavrasOrdenadasBubbleSort);
         escreverArquivo(arquivoSaida, "Insertion Sort (" + tempoExecucaoInsertionSort + " ms):\n", palavrasOrdenadasInsertionSort);
         escreverArquivo(arquivoSaida, "Merge Sort (" + tempoExecucaoMergeSort + " ms):\n", palavrasOrdenadasMergeSort);
         escreverArquivo(arquivoSaida, "Quick Sort (" + tempoExecucaoQuickSort + " ms):\n", palavrasOrdenadasQuickSort);
         escreverArquivo(arquivoSaida, "Collections.sort (" + tempoExecucaoCollections + " ms):\n", palavrasOrdenadasCollections);
+         */
     }
 
 
-    }
+
 
     /**
      * Ler as palavras de um arquivo de texto e as armazena em uma lista.
@@ -136,4 +137,3 @@ public class OrdenacaoDePalavras {
 
 }
 
-}
