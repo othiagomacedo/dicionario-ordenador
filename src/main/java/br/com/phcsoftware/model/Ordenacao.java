@@ -1,5 +1,7 @@
 package br.com.phcsoftware.model;
 
+import java.util.Arrays;
+
 public class Ordenacao implements IOrdenacao {
 
     public Ordenacao(){
@@ -89,6 +91,35 @@ public class Ordenacao implements IOrdenacao {
             long tempoDeExecucao = inicio - System.nanoTime();
         }catch (Exception e) {
 
+        }
+    }
+
+    @Override
+    public String[] getParteListaOrdenada(String[] vetorOrganizadoPorTamanhoPalavra, int tamanhoPalavraBuscada) throws Exception{
+        String[] vetor = vetorOrganizadoPorTamanhoPalavra;
+        int busca = tamanhoPalavraBuscada;
+        String palavras = "";
+        try{
+            //busca sequencial para obter apenas a parte do vetor que corresponde o tamanho da palavra buscada
+            for(int i = 0; i < vetor.length ; i++){
+                if (vetor[i].length() == tamanhoPalavraBuscada) {
+                    //preenche uma string com as palavras preenchidas
+                    palavras += vetor[i] + ";";
+                } else {
+                    if (vetor[i].length() > tamanhoPalavraBuscada){
+                        //para sair do loop
+                        i = vetor.length;
+                    }
+                }
+            }
+            if (palavras.endsWith(";")) {
+                palavras = palavras.substring(0, palavras.length() - 1);
+            }
+            String[] vet = palavras.split(";");
+            Arrays.sort(vet);
+            return vet;
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
         }
     }
 }

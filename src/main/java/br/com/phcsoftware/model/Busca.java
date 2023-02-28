@@ -6,7 +6,9 @@ import br.com.phcsoftware.processados.Processado;
 public class Busca implements IBusca{
 
     IProcessado lista;
+    IOrdenacao ordem;
     public Busca() {
+        this.ordem = new Ordenacao();
         this.lista = new Processado();
     }
 
@@ -14,6 +16,7 @@ public class Busca implements IBusca{
     public int buscaBinaria(String palavraBuscada) throws Exception{
         try{
             long start = System.nanoTime();
+            String[] vetor = ordem.getParteListaOrdenada(lista.vetorOrganizadoArmazenado(),palavraBuscada.length());
 
             long termino = System.nanoTime() - start;
             return 0;

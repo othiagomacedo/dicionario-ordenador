@@ -10,4 +10,6 @@ public interface IOrdenacao {
     void mergeSort(String[] listaDesorganizada) throws Exception;
 
     void quickSort(String[] listaDesorganizada) throws Exception;
+
+    String[] getParteListaOrdenada(String[] vetorOrganizadoPorTamanhoPalavra, int tamanhoPalavraBuscada) throws Exception;
 }
