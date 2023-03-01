@@ -8,7 +8,7 @@ public class Resultado {
     private Resultado(){}
 
     public static void salvarTXT(String[] vetorDePalavras, String nomeTipoOrdenador) throws Exception {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivoOrdenadoBy_"+nomeTipoOrdenador+"French.txt"))){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivoOrdenadoBy_"+nomeTipoOrdenador+".txt"))){
             String listaPalavras = "";
             for(String palavra:vetorDePalavras){
                 listaPalavras += palavra + "\n";
