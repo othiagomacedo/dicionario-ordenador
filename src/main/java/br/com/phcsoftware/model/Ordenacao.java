@@ -46,7 +46,8 @@ public class Ordenacao implements IOrdenacao {
     @Override
     public void bubbleSort(String[] listaDesorganizada) throws Exception {
         try {
-            long inicio = System.nanoTime();
+            long inicioNano = System.nanoTime();
+            long inicioMilli = System.currentTimeMillis();
 
             int n = listaDesorganizada.length;
 
@@ -59,14 +60,21 @@ public class Ordenacao implements IOrdenacao {
                         listaDesorganizada[j + 1] = temp;
 
                         //isso aqui é puro teste pra ver até onde esse cara vai
-                        cont+=1;
-                        System.out.println("Contador de troca feita pelo buble: "+ cont);
+                        //cont+=1;
+                        //System.out.println("Contador de troca feita pelo buble: "+ cont);
                     }
                 }
             }
 
-            long tempoDeExecucao = inicio - System.nanoTime();
-            System.out.println("Tempo de execucao do BubbleSort: "+tempoDeExecucao);
+            long finalNano =  System.nanoTime();
+            long finalMilli = System.currentTimeMillis();
+
+            long tempoExecucaoNano = finalNano - inicioNano;
+            long tempoExecucaoMilli = finalMilli - inicioMilli;
+
+            System.out.println("Tempo de execucao do bubbleSort (nano): "+ tempoExecucaoNano);
+            System.out.println("Tempo de execucao do bubbleSort (milli): "+ tempoExecucaoMilli);
+
             Resultado.salvarTXT(listaDesorganizada,"BubbleSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método bubbleSort: "+e.getMessage());
@@ -78,6 +86,7 @@ public class Ordenacao implements IOrdenacao {
         try {
             long inicioNano = System.nanoTime();
             long inicioMilli = System.currentTimeMillis();
+
             int n = listaDesorganizada.length;
             int cont = 0;
             for (int i = 1; i < n; i++) {

@@ -28,15 +28,15 @@ public class ControleArquivoIn implements IControleArquivoIn {
              while ((linha = reader.readLine()) != null) {
                 listaAux += linha + ";";
                 cont+=1;
-                if(cont%10000==0) System.out.println("contagem de linhas até agora: "+cont);
+                //if(cont%10000==0) System.out.println("contagem de linhas até agora: "+cont);
              }
              //arquivoSelecionado.delete();
             System.out.println("Contador de palavras: "+cont);
              String[] vetAux = listaAux.split(";");
 
              //ordenacao.bubbleSort(vetAux);
-             ordenacao.insertionSort(vetAux);
-             //ordenacao.selectionSort(vetAux);
+             //ordenacao.insertionSort(vetAux);
+             ordenacao.selectionSort(vetAux);
         } catch (Exception e) {
             throw e;
         }
