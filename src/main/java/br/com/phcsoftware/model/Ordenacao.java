@@ -10,9 +10,11 @@ public class Ordenacao implements IOrdenacao {
     @Override
     public void selectionSort(String[] listaDesorganizada) throws Exception {
         try {
-            long inicio = System.nanoTime();
+            long inicioNano = System.nanoTime();
+            long inicioMilli = System.currentTimeMillis();
             for(int i = 0; i < listaDesorganizada.length; i++) {
                 int menor = i;
+                int cont = 0;
                 for (int j = menor + 1; j < listaDesorganizada.length; j++){
                     if (listaDesorganizada[j].length() < listaDesorganizada[menor].length()){
                         menor = j;
@@ -23,9 +25,18 @@ public class Ordenacao implements IOrdenacao {
                     listaDesorganizada[i] = listaDesorganizada[menor];
                     listaDesorganizada[menor] = temp;
                 }
+
+
             }
-            long tempoDeExecucao = inicio - System.nanoTime();
-            System.out.println("Tempo de execucao do selectionSort: "+tempoDeExecucao);
+            long finalNano =  System.nanoTime();
+            long finalMilli = System.currentTimeMillis();
+
+            long tempoExecucaoNano = finalNano - inicioNano;
+            long tempoExecucaoMilli = finalMilli - inicioMilli;
+
+            System.out.println("Tempo de execucao do selectionSort (nano): "+ tempoExecucaoNano);
+            System.out.println("Tempo de execucao do selectionSort (milli): "+ tempoExecucaoMilli);
+
             Resultado.salvarTXT(listaDesorganizada,"SelectionSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método selectionSort: "+e.getMessage());
@@ -65,7 +76,8 @@ public class Ordenacao implements IOrdenacao {
     @Override
     public void insertionSort(String[] listaDesorganizada) throws Exception {
         try {
-            long inicio = System.nanoTime();
+            long inicioNano = System.nanoTime();
+            long inicioMilli = System.currentTimeMillis();
             int n = listaDesorganizada.length;
             int cont = 0;
             for (int i = 1; i < n; i++) {
@@ -81,8 +93,16 @@ public class Ordenacao implements IOrdenacao {
                 cont+=1;
                 if (cont%1000==0)System.out.println("Contador de troca feita pelo insertion: "+ cont);
             }
-            long tempoDeExecucao = inicio - System.nanoTime();
-            System.out.println("Tempo de execucao do insertionSort: "+tempoDeExecucao);
+            long finalNano =  System.nanoTime();
+            long finalMilli = System.currentTimeMillis();
+
+            long tempoExecucaoNano = finalNano - inicioNano;
+            long tempoExecucaoMilli = finalMilli - inicioMilli;
+
+            System.out.println("Tempo de execucao do insertionSort (nano): "+ tempoExecucaoNano);
+            System.out.println("Tempo de execucao do insertionSort (milli): "+ tempoExecucaoMilli);
+
+
             Resultado.salvarTXT(listaDesorganizada,"InsertionSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método insertionSort: "+e.getMessage());
