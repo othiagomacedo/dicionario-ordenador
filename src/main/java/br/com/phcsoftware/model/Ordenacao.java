@@ -25,6 +25,8 @@ public class Ordenacao implements IOrdenacao {
                 }
             }
             long tempoDeExecucao = inicio - System.nanoTime();
+            System.out.println("Tempo de execucao do selectionSort: "+tempoDeExecucao);
+            Resultado.salvarTXT(listaDesorganizada,"SelectionSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método selectionSort: "+e.getMessage());
         }
@@ -37,17 +39,24 @@ public class Ordenacao implements IOrdenacao {
 
             int n = listaDesorganizada.length;
 
+            int cont = 0;
             for (int i = 0; i < n - 1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
                     if (listaDesorganizada[j].length() > listaDesorganizada[j + 1].length()) {
                         String temp = listaDesorganizada[j];
                         listaDesorganizada[j] = listaDesorganizada[j + 1];
                         listaDesorganizada[j + 1] = temp;
+
+                        //isso aqui é puro teste pra ver até onde esse cara vai
+                        cont+=1;
+                        System.out.println("Contador de troca feita pelo buble: "+ cont);
                     }
                 }
             }
 
             long tempoDeExecucao = inicio - System.nanoTime();
+            System.out.println("Tempo de execucao do BubbleSort: "+tempoDeExecucao);
+            Resultado.salvarTXT(listaDesorganizada,"BubbleSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método bubbleSort: "+e.getMessage());
         }
@@ -58,7 +67,7 @@ public class Ordenacao implements IOrdenacao {
         try {
             long inicio = System.nanoTime();
             int n = listaDesorganizada.length;
-
+            int cont = 0;
             for (int i = 1; i < n; i++) {
                 String palavra = listaDesorganizada[i];
                 int j = i - 1;
@@ -67,8 +76,14 @@ public class Ordenacao implements IOrdenacao {
                     j = j - 1;
                 }
                 listaDesorganizada[j + 1] = palavra;
+
+                //isso aqui é puro teste pra ver até onde esse cara vai
+                cont+=1;
+                if (cont%1000==0)System.out.println("Contador de troca feita pelo insertion: "+ cont);
             }
             long tempoDeExecucao = inicio - System.nanoTime();
+            System.out.println("Tempo de execucao do insertionSort: "+tempoDeExecucao);
+            Resultado.salvarTXT(listaDesorganizada,"InsertionSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método insertionSort: "+e.getMessage());
         }

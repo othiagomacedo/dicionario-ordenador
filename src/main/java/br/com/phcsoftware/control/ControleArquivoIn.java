@@ -3,6 +3,7 @@ package br.com.phcsoftware.control;
 import br.com.phcsoftware.model.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,21 +19,29 @@ public class ControleArquivoIn implements IControleArquivoIn {
     }
 
     @Override
-    public void internalizarArquivo(String arquivoSelecionado) throws Exception {
-        String nomeArquivo = ".\\phcsoftware\\control\\arquivo.txt";
-        
+    public void internalizarArquivo(File arquivoSelecionado) throws Exception {
         // Ler o arquivo de texto
-        List<String> palavras = new ArrayList<String>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(".\\phcsoftware\\control\\arquivo.txt"));
-             String linha = null;
+        try(BufferedReader reader = new BufferedReader(new FileReader(arquivoSelecionado))) {
+             String linha = "";
+             String listaAux = "";
+             int cont = 0;
              while ((linha = reader.readLine()) != null) {
-            // processar a linha lida
-            System.out.println(linha);
-            }
+                listaAux += linha + ";";
+                cont+=1;
+                if(cont%10000==0) System.out.println("contagem de linhas até agora: "+cont);
+             }
+             //arquivoSelecionado.delete();
+            System.out.println("Contador de palavras: "+cont);
+             String[] vetAux = listaAux.split(";");
+
+             //ordenacao.bubbleSort(vetAux);
+             ordenacao.insertionSort(vetAux);
+             //ordenacao.selectionSort(vetAux);
         } catch (Exception e) {
+            throw e;
         }
-        
+
+        /*
         // Comparador de palavras pelo seu tamanho
         Comparator<String> comparador = new Comparator<String>() {
             @Override
@@ -47,7 +56,7 @@ public class ControleArquivoIn implements IControleArquivoIn {
         // Imprimir as palavras ordenadas
         for (String palavra : palavras) {
             System.out.println(palavra);
-        }
+        }*/
         
     }
 
