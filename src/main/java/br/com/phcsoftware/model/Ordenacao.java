@@ -36,7 +36,8 @@ public class Ordenacao implements IOrdenacao {
 
             System.out.println("Tempo de execucao do selectionSort (nano): "+ tempoExecucaoNano);
             System.out.println("Tempo de execucao do selectionSort (milli): "+ tempoExecucaoMilli);
-
+            Busca.buscaBinaria(listaDesorganizada,"Alyssa");
+            Busca.buscaSequencial(listaDesorganizada,"Alyssa");
             Resultado.salvarTXT(listaDesorganizada,"SelectionSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método selectionSort: "+e.getMessage());
@@ -111,7 +112,8 @@ public class Ordenacao implements IOrdenacao {
             System.out.println("Tempo de execucao do insertionSort (nano): "+ tempoExecucaoNano);
             System.out.println("Tempo de execucao do insertionSort (milli): "+ tempoExecucaoMilli);
 
-
+            Busca.buscaBinaria(listaDesorganizada,"Alyssa");
+            Busca.buscaSequencial(listaDesorganizada,"Alyssa");
             Resultado.salvarTXT(listaDesorganizada,"InsertionSort");
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método insertionSort: "+e.getMessage());

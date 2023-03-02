@@ -26,7 +26,12 @@ public class ControleArquivoIn implements IControleArquivoIn {
              String listaAux = "";
              int cont = 0;
              while ((linha = reader.readLine()) != null) {
-                listaAux += linha + ";";
+                if (linha.contains("/")) {
+                    listaAux += linha.substring(0,linha.indexOf('/'));
+                } else {
+                    listaAux += linha;
+                }
+                listaAux += ";";
                 cont+=1;
                 //if(cont%10000==0) System.out.println("contagem de linhas até agora: "+cont);
              }
@@ -35,7 +40,7 @@ public class ControleArquivoIn implements IControleArquivoIn {
              String[] vetAux = listaAux.split(";");
 
              //ordenacao.bubbleSort(vetAux);
-             //ordenacao.insertionSort(vetAux);
+             ordenacao.insertionSort(vetAux);
              ordenacao.selectionSort(vetAux);
         } catch (Exception e) {
             throw e;
