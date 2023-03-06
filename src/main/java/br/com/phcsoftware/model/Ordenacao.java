@@ -26,7 +26,6 @@ public class Ordenacao implements IOrdenacao {
                     listaDesorganizada[menor] = temp;
                 }
 
-
             }
             long finalNano =  System.nanoTime();
             long finalMilli = System.currentTimeMillis();
