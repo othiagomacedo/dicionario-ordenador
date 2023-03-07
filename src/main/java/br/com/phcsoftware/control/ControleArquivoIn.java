@@ -19,13 +19,25 @@ public class ControleArquivoIn implements IControleArquivoIn {
     }
 
     @Override
-    public void internalizarArquivo(File arquivoSelecionado) throws Exception {
-        // Ler o arquivo de texto
-        try(BufferedReader reader = new BufferedReader(new FileReader(arquivoSelecionado))) {
-             String linha = "";
-             String listaAux = "";
-             int cont = 0;
-             while ((linha = reader.readLine()) != null) {
+    public void internalizarArquivo(File arquivoSelecionado,TipoDicionario tipoDicionario) throws Exception {
+        switch (tipoDicionario){
+            case PORTUGUES:{
+                Dicionario.setDicionarioPortuguesCru(leituraArquivoConverterParaVetor(arquivoSelecionado));
+                break;
+            }
+            case ESTRANGEIRO:{
+                Dicionario.setDicionarioEstrangeiroCru(leituraArquivoConverterParaVetor(arquivoSelecionado));
+                break;
+            }
+        }
+    }
+
+    private String[] leituraArquivoConverterParaVetor(File arquivoIdentificado) throws Exception {
+        try(BufferedReader reader = new BufferedReader(new FileReader(arquivoIdentificado))) {
+            String linha = "";
+            String listaAux = "";
+            int cont = 0;
+            while ((linha = reader.readLine()) != null) {
                 if (linha.contains("/")) {
                     listaAux += linha.substring(0,linha.indexOf('/'));
                 } else {
@@ -33,36 +45,16 @@ public class ControleArquivoIn implements IControleArquivoIn {
                 }
                 listaAux += ";";
                 cont+=1;
-                //if(cont%10000==0) System.out.println("contagem de linhas até agora: "+cont);
-             }
-             //arquivoSelecionado.delete();
+                if(cont%10000==0) System.out.println("contagem de linhas até agora: "+cont);
+            }
+            //arquivoSelecionado.delete();
             System.out.println("Contador de palavras: "+cont);
-             String[] vetAux = listaAux.split(";");
+            String[] vetAux = listaAux.split(";");
 
-             //ordenacao.bubbleSort(vetAux);
-             ordenacao.insertionSort(vetAux);
-             ordenacao.selectionSort(vetAux);
+            return vetAux;
         } catch (Exception e) {
             throw e;
         }
-
-        /*
-        // Comparador de palavras pelo seu tamanho
-        Comparator<String> comparador = new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return Integer.compare(s1.length(), s2.length());
-            }
-        };
-        
-        // Ordenar a lista de palavras pelo seu tamanho
-        Collections.sort(palavras, comparador);
-        
-        // Imprimir as palavras ordenadas
-        for (String palavra : palavras) {
-            System.out.println(palavra);
-        }*/
-        
     }
 
 }

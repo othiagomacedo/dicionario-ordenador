@@ -18,4 +18,13 @@ public class Resultado {
             throw new Exception("Nao foi possivel realizar o salvar do arquivo TXT: "+e.getMessage());
         }
     }
+
+    public static void relatorioTempoOrganizado(String relatorio, String nomeTipoOrdenador) throws Exception {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\relatorios\\relatorioOrdenacaoBy_"+nomeTipoOrdenador+".txt"))){
+            bw.write(relatorio);
+            System.out.println("relatorioOrdenacaoBy_"+nomeTipoOrdenador+" arquivado em processados/relatorios...");
+        } catch (Exception e){
+            throw e;
+        }
+    }
 }

@@ -12,52 +12,100 @@ public class Busca{
         this.lista = new Processado();
     }
 
-    public static void buscaBinaria(String[] vetorPreOrganizado,String palavraBuscada) throws Exception{
+     public static void buscaBinariaHibrida(TipoDicionario tipoDicionario, String palavraBuscada)throws Exception{
         try{
             long start = System.nanoTime();
+            String[] vetor;
+            if (tipoDicionario == TipoDicionario.PORTUGUES){
+                vetor=Dicionario.getDicionarioPortugues();
+            } else {
+                vetor=Dicionario.getDicionarioEstrangeiro();
+            }
+
             int inicio = 0;
-            int fim = vetorPreOrganizado.length - 1;
+            int fim = vetor.length - 1;
             boolean achou = false;
             int posAchou = 0;
+            int tamanhoPalavraBuscada = palavraBuscada.length();
+            int meio = 0;
+
             while (inicio <= fim) {
-                int meio = (inicio + fim) / 2;
+                meio = (inicio + fim) / 2;
 
-                int comparacao = palavraBuscada.compareTo(vetorPreOrganizado[meio]);
+                int tamanhoElementoPosicaoAtual = vetor[meio].length();
 
-                if (comparacao == 0) {
+                if (tamanhoElementoPosicaoAtual == tamanhoPalavraBuscada) {
                     posAchou = meio;
-                    achou = true;
                     inicio = 1;
                     fim = 0;
-                } else if (comparacao < 0) {
+                    //esse "achou" é apenas para achar o tamanho da palavra, e nao a palavra em si
+                    achou = true;
+                } else if (tamanhoElementoPosicaoAtual < tamanhoPalavraBuscada) {
                     fim = meio - 1;
                 } else {
                     inicio = meio + 1;
                 }
             }
+
+            if(achou){
+                //pega o range do vetor até o final
+                fim = posAchou;
+                int cont = posAchou;
+                while(vetor[cont].length() == palavraBuscada.length()){
+                    fim += 1;
+                    cont += 1;
+                }
+
+                //pega o range do vetor até o inicio
+                inicio = posAchou;
+                cont = posAchou;
+                while(vetor[cont].length() == palavraBuscada.length()){
+                    inicio -= 1;
+                    cont -= 1;
+                }
+            }
+
+            if (achou){
+                //agora o achou vai contar se de fato a palavra existe ou não, se der true, é porque a palavra existe dentro do range delimitado no if anterior
+                achou = false;
+                for (int i = inicio; i <= fim ; i++){
+                    if (vetor[i].equals(palavraBuscada)){
+                        //com o achou agora conta para palavra encontrada, se de fato a palavra existe, vai cair nesse if e o achou recebe true
+                        posAchou = i;
+                        achou = true;
+                    }
+                }
+            }
+
             long termino = System.nanoTime() - start;
             imprimirResultados("Binaria",termino,achou,posAchou,palavraBuscada);
-        } catch (Exception e){
+        }catch (Exception e){
             throw new Exception("Nao foi possivel executar a busca binaria: "+e.getMessage());
         }
     }
 
-    public static void buscaSequencial (String[] vetorPreOrganizado,String palavraBuscada) throws Exception{
+    public static void buscaSequencial (TipoDicionario tipoDicionario,String palavraBuscada) throws Exception{
         try{
             long start = System.nanoTime();
+            String[] vetor;
+            if (tipoDicionario == TipoDicionario.PORTUGUES){
+                vetor=Dicionario.getDicionarioPortugues();
+            } else {
+                vetor=Dicionario.getDicionarioEstrangeiro();
+            }
             boolean achou = false;
             int posAchou = 0;
-            for (int i = 0; i < vetorPreOrganizado.length ; i++) {
-                if (vetorPreOrganizado[i].equals(palavraBuscada)){
+            for (int i = 0; i < vetor.length ; i++) {
+                if (vetor[i].equals(palavraBuscada)){
                     posAchou = i;
                     achou = true;
-                    continue;
+                    break;
                 }
             }
             long termino = System.nanoTime() - start;
             imprimirResultados("Sequencial",termino,achou,posAchou,palavraBuscada);
         } catch (Exception e){
-            throw new Exception("Nao foi possivel executar a busca binaria: "+e.getMessage());
+            throw new Exception("Nao foi possivel executar a busca sequencial: "+e.getMessage());
         }
     }
 
