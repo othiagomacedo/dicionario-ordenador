@@ -17,11 +17,11 @@ public class Main {
         IControleArquivoIn controleArquivoIn = new ControleArquivoIn();
         //controleBusca.buscaSequencial();
 
-        File arquivoEstrangeiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivoFrenchs.txt");
-        //File arquivoBrasileiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivo.txt");
+        //File arquivoEstrangeiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivoFrenchs.txt");
+        File arquivoBrasileiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivo.txt");
 
-        //controleArquivoIn.internalizarArquivo(arquivoBrasileiro, TipoDicionario.PORTUGUES);
-        controleArquivoIn.internalizarArquivo(arquivoEstrangeiro, TipoDicionario.ESTRANGEIRO);
+        controleArquivoIn.internalizarArquivo(arquivoBrasileiro, TipoDicionario.PORTUGUES);
+        //controleArquivoIn.internalizarArquivo(arquivoEstrangeiro, TipoDicionario.ESTRANGEIRO);
 
         console();
         //controleArquivoIn.internalizarArquivo(arquivo);

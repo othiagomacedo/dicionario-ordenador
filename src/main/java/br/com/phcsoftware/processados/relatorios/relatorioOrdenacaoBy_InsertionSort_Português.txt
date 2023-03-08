@@ -1,0 +1,6 @@
+Método de ordenacao InsertionSort ==============
+Data e Hora da Execução: 08/03/2023 13:08 
+Tempo de execucao (nanosegundos): 17128700
+Tempo de execucao (millisegundos): 18
+Tempo de execucao (segundos): 0
+Numero de trocas feitas por este método de organização: 307374

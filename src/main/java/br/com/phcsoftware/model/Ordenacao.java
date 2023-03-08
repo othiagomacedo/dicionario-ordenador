@@ -56,7 +56,12 @@ public class Ordenacao implements IOrdenacao {
                     "\nTempo de execucao (segundos): "+ tempoExecucaoMilli/1000+
                     "\nNumero de trocas feitas por este método de organização: "+cont;
 
-            Resultado.relatorioTempoOrganizado(relatorio,"SelectionSort");
+            if(tipoDicionario == TipoDicionario.PORTUGUES){
+                Resultado.relatorioTempoOrganizado(relatorio,"SelectionSort", "Português");
+            } else {
+                Resultado.relatorioTempoOrganizado(relatorio,"SelectionSort", "Estrangeiro");
+            }
+
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método selectionSort: "+e.getMessage());
         }
@@ -107,8 +112,12 @@ public class Ordenacao implements IOrdenacao {
 
             salvarDicionarioOrganizado(tipoDicionario, listaDesorganizada);
 
-            //Resultado.salvarTXT(listaDesorganizada,"BubbleSort");
-            Resultado.relatorioTempoOrganizado(relatorio,"BubbleSort");
+            if(tipoDicionario == TipoDicionario.PORTUGUES){
+                Resultado.relatorioTempoOrganizado(relatorio,"BubbleSort", "Português");
+            } else {
+                Resultado.relatorioTempoOrganizado(relatorio,"BubbleSort", "Estrangeiro");
+            }
+
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método bubbleSort: "+e.getMessage());
         }
@@ -160,8 +169,11 @@ public class Ordenacao implements IOrdenacao {
                     "\nTempo de execucao (segundos): "+ tempoExecucaoMilli/1000+
                     "\nNumero de trocas feitas por este método de organização: "+cont;
 
-            //Resultado.salvarTXT(listaDesorganizada,"InsertionSort");
-            Resultado.relatorioTempoOrganizado(relatorio,"InsertionSort");
+            if(tipoDicionario == TipoDicionario.PORTUGUES){
+                Resultado.relatorioTempoOrganizado(relatorio,"InsertionSort", "Português");
+            } else {
+                Resultado.relatorioTempoOrganizado(relatorio,"InsertionSort", "Estrangeiro");
+            }
 
         }catch (Exception e) {
             throw new Exception("Erro ao executar o método insertionSort: "+e.getMessage());
@@ -200,7 +212,11 @@ public class Ordenacao implements IOrdenacao {
                     "\nTempo de execucao (millisegundos): "+ tempoExecucaoMilli+
                     "\nTempo de execucao (segundos): "+ tempoExecucaoMilli/1000;
 
-            Resultado.relatorioTempoOrganizado(relatorio,"MergeSort");
+            if(tipoDicionario == TipoDicionario.PORTUGUES){
+                Resultado.relatorioTempoOrganizado(relatorio,"MergeSort", "Português");
+            } else {
+                Resultado.relatorioTempoOrganizado(relatorio,"MergeSort", "Estrangeiro");
+            }
 
         }catch (Exception e) {
             throw e;
@@ -280,7 +296,11 @@ public class Ordenacao implements IOrdenacao {
                     "\nTempo de execucao (millisegundos): "+ tempoExecucaoMilli+
                     "\nTempo de execucao (segundos): "+ tempoExecucaoMilli/1000;
 
-            Resultado.relatorioTempoOrganizado(relatorio,"QuickSort");
+            if(tipoDicionario == TipoDicionario.PORTUGUES){
+                Resultado.relatorioTempoOrganizado(relatorio,"QuickSort", "Português");
+            } else {
+                Resultado.relatorioTempoOrganizado(relatorio,"QuickSort", "Estrangeiro");
+            }
 
         }catch (Exception e) {
             throw e;

@@ -19,8 +19,8 @@ public class Resultado {
         }
     }
 
-    public static void relatorioTempoOrganizado(String relatorio, String nomeTipoOrdenador) throws Exception {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\relatorios\\relatorioOrdenacaoBy_"+nomeTipoOrdenador+".txt"))){
+    public static void relatorioTempoOrganizado(String relatorio, String nomeTipoOrdenador, String tipoDic) throws Exception {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\relatorios\\relatorioOrdenacaoBy_"+nomeTipoOrdenador+ "_" + tipoDic + ".txt"))){
             bw.write(relatorio);
             System.out.println("relatorioOrdenacaoBy_"+nomeTipoOrdenador+" arquivado em processados/relatorios...");
         } catch (Exception e){

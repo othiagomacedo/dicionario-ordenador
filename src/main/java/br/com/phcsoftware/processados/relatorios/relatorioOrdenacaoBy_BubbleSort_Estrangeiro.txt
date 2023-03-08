@@ -1,0 +1,6 @@
+Método de ordenacao BubleSort ==============
+Data e Hora da Execução: 08/03/2023 13:02 
+Tempo de execucao (nanosegundos): 14447330800
+Tempo de execucao (millisegundos): 14448
+Tempo de execucao (segundos): 14
+Numero de trocas feitas por este método de organização: 0

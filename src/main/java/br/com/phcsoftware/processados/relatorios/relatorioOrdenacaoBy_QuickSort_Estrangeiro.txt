@@ -1,0 +1,5 @@
+Método de ordenacao QuickSort ==============
+Data e Hora da Execução: 08/03/2023 13:02 
+Tempo de execucao (nanosegundos): 89416800
+Tempo de execucao (millisegundos): 89
+Tempo de execucao (segundos): 0

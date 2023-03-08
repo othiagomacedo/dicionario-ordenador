@@ -1,0 +1,5 @@
+Método de ordenacao MergeSort ==============
+Data e Hora da Execução: 08/03/2023 13:02 
+Tempo de execucao (nanosegundos): 46339200
+Tempo de execucao (millisegundos): 46
+Tempo de execucao (segundos): 0

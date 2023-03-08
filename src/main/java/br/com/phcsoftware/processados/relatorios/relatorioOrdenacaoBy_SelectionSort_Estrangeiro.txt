@@ -1,0 +1,6 @@
+Método de ordenacao SelectionSort ==============
+Data e Hora da Execução: 08/03/2023 13:02 
+Tempo de execucao (nanosegundos): 13165973400
+Tempo de execucao (millisegundos): 13166
+Tempo de execucao (segundos): 13
+Numero de trocas feitas por este método de organização: 0
