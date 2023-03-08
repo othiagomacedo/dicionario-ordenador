@@ -40,7 +40,7 @@ public class Busca{
                     fim = 0;
                     //esse "achou" é apenas para achar o tamanho da palavra, e nao a palavra em si
                     achou = true;
-                } else if (tamanhoElementoPosicaoAtual < tamanhoPalavraBuscada) {
+                } else if (tamanhoElementoPosicaoAtual > tamanhoPalavraBuscada) {
                     fim = meio - 1;
                 } else {
                     inicio = meio + 1;

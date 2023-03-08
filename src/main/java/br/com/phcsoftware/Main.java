@@ -17,11 +17,11 @@ public class Main {
         IControleArquivoIn controleArquivoIn = new ControleArquivoIn();
         //controleBusca.buscaSequencial();
 
-        //File arquivoEstrangeiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivoFrenchs.txt");
+        File arquivoEstrangeiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivoFrenchs.txt");
         File arquivoBrasileiro = new File(".\\src\\main\\java\\br\\com\\phcsoftware\\processados\\files\\arquivo.txt");
 
         controleArquivoIn.internalizarArquivo(arquivoBrasileiro, TipoDicionario.PORTUGUES);
-        //controleArquivoIn.internalizarArquivo(arquivoEstrangeiro, TipoDicionario.ESTRANGEIRO);
+        controleArquivoIn.internalizarArquivo(arquivoEstrangeiro, TipoDicionario.ESTRANGEIRO);
 
         console();
         //controleArquivoIn.internalizarArquivo(arquivo);
@@ -66,16 +66,15 @@ public class Main {
 
                 } else {
 
-                    if(tpDicionario == null){
-                        System.out.println("Em qual dicionario?\n(1) Portugues\n(2) Estrangeiro");
-                        tpDicio = Integer.parseInt(sc.nextLine());
+                    System.out.println("Em qual dicionario?\n(1) Portugues\n(2) Estrangeiro");
+                    tpDicio = Integer.parseInt(sc.nextLine());
 
-                        if (tpDicio == 1){
-                            tpDicionario = TipoDicionario.PORTUGUES;
-                        } else {
-                            tpDicionario = TipoDicionario.ESTRANGEIRO;
-                        }
+                    if (tpDicio == 1){
+                        tpDicionario = TipoDicionario.PORTUGUES;
+                    } else {
+                        tpDicionario = TipoDicionario.ESTRANGEIRO;
                     }
+
 
                     System.out.println("Selecione o metodo de Busca:\n(1) Binaria\n(2) Sequencial");
                     selecionado = Integer.parseInt(sc.nextLine());
