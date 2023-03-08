@@ -249,7 +249,16 @@ public class Ordenacao implements IOrdenacao {
     @Override
     public void quickSort(TipoDicionario tipoDicionario) throws Exception {
         try {
+
+            Date data = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm ");
+            String relatorio = "Método de ordenacao QuickSort ==============\nData e Hora da Execução: "+sdf.format(data)+"\n";
+
+            long inicioNano = System.nanoTime();
+            long inicioMilli = System.currentTimeMillis();
+
             String[] listaDesorganizada;
+
             if(tipoDicionario == TipoDicionario.PORTUGUES){
                 listaDesorganizada = Dicionario.getDicionarioPortuguesCru();
             } else {
@@ -257,16 +266,81 @@ public class Ordenacao implements IOrdenacao {
             }
             long inicio = System.nanoTime();
 
+            quickSort(listaDesorganizada, 0,listaDesorganizada.length - 1);
 
+            long finalNano =  System.nanoTime();
+            long finalMilli = System.currentTimeMillis();
 
-
-            long tempoDeExecucao = inicio - System.nanoTime();
+            long tempoExecucaoNano = finalNano - inicioNano;
+            long tempoExecucaoMilli = finalMilli - inicioMilli;
 
             salvarDicionarioOrganizado(tipoDicionario, listaDesorganizada);
 
-        }catch (Exception e) {
+            relatorio += "Tempo de execucao (nanosegundos): "+ tempoExecucaoNano+
+                    "\nTempo de execucao (millisegundos): "+ tempoExecucaoMilli+
+                    "\nTempo de execucao (segundos): "+ tempoExecucaoMilli/1000;
 
+            Resultado.relatorioTempoOrganizado(relatorio,"QuickSort");
+
+        }catch (Exception e) {
+            throw e;
         }
+    }
+
+    public void quickSort(String vetor[], int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(vetor, begin, end);
+
+            quickSort(vetor, begin, partitionIndex-1);
+            quickSort(vetor, partitionIndex+1, end);
+        }
+    }
+
+    private int partition(String vetor[], int begin, int end) {
+        String pivot = vetor[begin];
+        int i = (begin+1), f = end;
+
+        while (i <= f) {
+            if (vetor[i].compareTo(pivot) <= 0) {
+                i++;
+            } else if (pivot.compareTo(vetor[f]) < 0){
+                f--;
+            } else {
+                String troca = vetor[i];
+                vetor[i] = vetor[f];
+                vetor[f] = troca;
+                i++;
+                f--;
+            }
+        }
+
+        vetor[begin] = vetor [f];
+        vetor[f] = pivot;
+        return f;
+
+        //MÉTODO DO BAELDUNG
+/*      private int partition(int arr[], int begin, int end)
+
+        int pivot = arr[end];
+        int i = (begin-1);
+
+        for (int j = begin; j < end; j++) {
+            if (vetor[j].length() <= pivot.length()) {
+                i++;
+
+                String swapTemp = vetor[i];
+                vetor[i] = vetor[j];
+                vetor[j] = swapTemp;
+            }
+        }
+
+        String swapTemp = vetor[i+1];
+        vetor[i+1] = vetor[end];
+        vetor[end] = swapTemp;
+
+        return i+1;
+
+ */
     }
 
     private void salvarDicionarioOrganizado(TipoDicionario tipoDicionario, String[] listaOrganizada)throws Exception {
